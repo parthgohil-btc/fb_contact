@@ -1,0 +1,14 @@
+!!!
+%html
+  %head
+    %title SimpleReview
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+    = javascript_include_tag "jquery.raty"
+    = javascript_include_tag "jquery.raty.min"
+  %body
+    = render partial: "layouts/navigation"
+    #flash_div
+      = render partial: "layouts/flash"
+    = yield

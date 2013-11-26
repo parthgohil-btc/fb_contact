@@ -1,0 +1,55 @@
+#star
+- if current_user
+  .pull-right
+    %a.btn{:href => new_reviews_path}
+      %i.icon-plus 
+      Add Reviews
+  %br
+  .container-fluid
+    .span4
+      %ul.nav.nav-pills.nav-stacked
+        %li.active
+          %a{:href => "#{friends_index_path(id: session[:facebook_id])}", "data-remote" => true}
+            =image_tag @profile_pic
+            %strong= current_user.name
+      %h3 Friends
+      %ul.nav.nav-pills.nav-stacked
+        - if @friends_profile.present?
+          - user_class = 0
+          - @friends_profile.each do |friend|
+            - user_class = user_class + 1
+            %li{ class: "#{user_class} friends", id: friend['id'] }
+              %a{:href => "#{friends_index_path(id: friend['id'])}", "data-remote" => true}
+                =image_tag friend['picture']['data']['url']
+                = friend['name']
+                |
+                = friend['gender']
+                |
+                = friend['birthday']
+                |
+                = friend['location']['name'] if friend['location']
+        - else
+          %p None of your friends posted any review     
+    .span8
+      %strong Reviews
+      .show-reviews=render partial: 'reviews', locals: { reviews: @reviews }
+- else
+  = link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
+  .p
+    = link_to "Sign in", new_user_session_path
+
+:css
+  .same-line {
+  	list-style-type: none;
+  	display: inline-block;
+  }
+
+  .same-line img
+  {
+  	float:left;
+  }
+
+  .same-line p {
+  	text-align: right; 
+  	display:inline-block;
+  }

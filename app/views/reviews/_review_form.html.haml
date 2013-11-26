@@ -1,0 +1,10 @@
+= form_for(@review, url: create_review_path(@review), method: :post) do |f|
+	.row
+		= f.label :place
+		= f.select "place_id", options_from_collection_for_select(Place.all.collect, "id", "name")
+		= f.label :rating
+		#review_rating
+		= f.label :comment
+		= f.text_area :comment, size: "25x10"
+	.row
+		= f.submit "Post Review", :class => 'btn'

@@ -1,0 +1,23 @@
+.row
+  .span7
+    %table.table.table-striped
+      %tr
+        %th
+          Review
+        %th
+        %th
+      %tr
+        %th
+          = 'Place'
+        %th
+          = 'Rating'
+        %th
+          = 'Comment'
+      - @reviews.each do |review|
+        %tr
+          %td
+            = review.place.name
+          %td
+            = review.rating
+          %td
+            = review.comment

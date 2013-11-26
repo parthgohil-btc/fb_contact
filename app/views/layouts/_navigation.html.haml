@@ -1,0 +1,8 @@
+%header.navbar
+	%nav.navbar-inner
+		.container-fluid
+			= link_to "Facebook Friend's Reviews", root_path,class: "brand"
+			.navbar-search.pull-right
+				Signed in as 
+				%strong= current_user.name
+				= link_to "Sign out", destroy_user_session_path, method: 'DELETE'

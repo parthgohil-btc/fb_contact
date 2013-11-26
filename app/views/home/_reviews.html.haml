@@ -1,0 +1,21 @@
+%ul.nav.nav-tabs.nav-stacked
+  - if reviews.present?
+    - index = 0
+    - reviews.each do |review|
+      %li
+        %a.same-line{href: '#'}
+          =#image_tag "#{i+1}.jpg", height: "50", width:"50"
+          Location:-
+          %br
+          %p= review.place.name
+          %br
+          comment:-
+          %br
+          = review.comment
+          %div
+            =# review.rating 
+          = hidden_field_tag "rating_#{index}", review.rating 
+          .star_rating{ id: "star_#{index}" }
+          - index = index + 1
+  - else
+    %h3 NO Reviews found        
